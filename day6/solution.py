@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 import sys
+from functools import reduce 
 
 def decrypt_msg(input):
     pass
@@ -40,6 +41,9 @@ def maxChar(dict):
         
     return maxChar
 
+def maxChar_with_reduce(dict):
+    return reduce(lambda dict_item, seq: dict_item if dict_item[1] > seq[1] else seq, dict.items())[0]
+
 part1_decoded_pass = ""
 
 for col in range(0, len(input[0].strip())):
@@ -52,7 +56,7 @@ for col in range(0, len(input[0].strip())):
         else:
             dict[element] = 0
     
-    max_char = maxChar(dict)
+    max_char = maxChar_with_reduce(dict)
 
     part1_decoded_pass += str(max_char)
 
